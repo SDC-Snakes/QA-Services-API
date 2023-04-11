@@ -1,4 +1,4 @@
-const db = require('./db');
+const db = require('./db.js');
 
 module.exports.getQuestions = (req) => {
   // console.log(req.query);
@@ -46,24 +46,27 @@ module.exports.getAnswers = (req) => {
   )
   AS answers
   FROM answers
-  WHERE answers.question_id = ${req.params.question_id}
-  LIMIT 2;`;
+  WHERE answers.question_id = ${req.params.question_id};`;
 
   return db.any(queryString);
-}
+};
 
-// from Markus:
-// const arrayForBatch = () => ({
-//   method:'GET',
-//   url: `http://localhost:3000/api/qa/questions?product_id=${Math.ceil(Math.random() * 1000011)}`,
-//   params:{
-//     tags:{
-//       name: 'PostsQuestionURL'
-//     }
-//   }
-// })
+module.exports.getPhotos = (answer_id) => {
+  // console.log(answer_id);
+  const queryString = answer_id === undefined ?
+  ``
+  :
+  `SELECT
+  json_agg(
+    json_build_object(
+      'id', id,
+      'url', url
+    )
+  )
+  AS photos
+  FROM answers_photos
+  WHERE answer_id = ${answer_id};`;
 
-// const makeBatch = (n) => (
-//   Array(n).fill('').map(() => (
-//     arrayForBatch()
-//   )))
+  return db.any(queryString);
+};
+
