@@ -1,14 +1,18 @@
-// const path = require('path');
-// const fs = require('fs');
+
+const pgp = require('pg-promise')();
+const path = require('path');
+const fs = require('fs');
 
 const cn = {
-  // host: 'localhost',
+  host: 'localhost',
   port: 5432,
   database: 'mymac',
-  // user: 'mymac'
+  user: 'mymac'
 };
 
-// const schemaPath = path.join(__dirname, 'dbSetup.sql');
+const db = pgp(cn);
+
+// const schemaPath = path.join(__dirname, '../dbSetup.sql');
 // const schemaQuery = fs.readFileSync(schemaPath).toString();
 
 // db
