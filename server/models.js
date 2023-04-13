@@ -21,7 +21,7 @@ module.exports.getQuestions = (req) => {
   AS results
   FROM questions
   WHERE product_id = ${params.product_id}
-  LIMIT ${params.count};`;
+  AND questions.reported = false`;
 
   return db.any(queryString);
 };
@@ -46,7 +46,8 @@ module.exports.getAnswers = (req) => {
   )
   AS answers
   FROM answers
-  WHERE answers.question_id = ${req.params.question_id};`;
+  WHERE answers.question_id = ${req.params.question_id}
+  AND answers.reported = false;`;
 
   return db.any(queryString);
 };

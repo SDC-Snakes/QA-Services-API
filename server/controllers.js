@@ -7,6 +7,7 @@ module.exports.getQs = (req, res) => {
       if (req.query.product_id !== undefined) {
         data[0].product_id = req.query.product_id;
       }
+      data[0].results = data[0].results.slice(0, req.query.count);
       return data;
     })
     .catch((err) => {
@@ -22,7 +23,6 @@ module.exports.getQs = (req, res) => {
         .then((ans) => {
           if (ans[0].answers === null) {
             data[0].results[i].answers = {};
-            return ++i;
           } else {
             data[0].results[i].answers = ans[0].answers;
           }
