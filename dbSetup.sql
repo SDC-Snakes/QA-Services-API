@@ -4,8 +4,10 @@
 DROP SCHEMA public CASCADE;
 CREATE SCHEMA public;
 
+-- CREATE TABLES
+
 CREATE TABLE questions (
-	id integer NOT NULL PRIMARY KEY,
+	id serial NOT NULL PRIMARY KEY,
 	product_id integer NOT NULL,
 	body varchar(255) NOT NULL,
 	date_written double precision NOT NULL,
@@ -16,7 +18,7 @@ CREATE TABLE questions (
 );
 
 CREATE TABLE answers (
-	id integer NOT NULL PRIMARY KEY,
+	id serial NOT NULL PRIMARY KEY,
   question_id integer NOT NULL REFERENCES questions(id),
 	body varchar(255) NOT NULL,
 	date_written double precision NOT NULL,
@@ -27,10 +29,20 @@ CREATE TABLE answers (
 );
 
 CREATE TABLE answers_photos (
-	id integer NOT NULL,
+	id serial NOT NULL,
   answer_id integer NOT NULL REFERENCES answers(id),
 	url varchar(255) NOT NULL
 );
+
+-- INDEX
+
+CREATE INDEX questions_product_id_index ON questions(product_id);
+CREATE INDEX questions_reported_index ON questions(reported);
+CREATE INDEX questions_helpful_index ON questions(helpful);
+CREATE INDEX answers_question_id_index ON answers(question_id);
+CREATE INDEX answers_reported_index ON answers(reported);
+CREATE INDEX answers_helpful_index ON answers(helpful);
+CREATE INDEX answers_photos_answer_id_index ON answers_photos(answer_id);
 
 -- LOAD IN CSV DATA
 
