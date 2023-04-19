@@ -1,13 +1,13 @@
-
+require('dotenv').config();
 const pgp = require('pg-promise')();
 const path = require('path');
 const fs = require('fs');
 
 const cn = {
-  host: 'localhost',
-  port: 5432,
-  database: 'mymac',
-  user: 'mymac'
+  host: process.env.PGHOST,
+  port: process.env.PGPORT,
+  database: process.env.PGDATABASE,
+  user: process.env.PGUSER
 };
 
 const db = pgp(cn);
