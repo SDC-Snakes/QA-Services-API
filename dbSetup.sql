@@ -36,13 +36,13 @@ CREATE TABLE answers_photos (
 
 -- INDEX
 
-CREATE INDEX questions_product_id_index ON questions(product_id);
-CREATE INDEX questions_reported_index ON questions(reported);
-CREATE INDEX questions_helpful_index ON questions(helpful);
-CREATE INDEX answers_question_id_index ON answers(question_id);
-CREATE INDEX answers_reported_index ON answers(reported);
-CREATE INDEX answers_helpful_index ON answers(helpful);
-CREATE INDEX answers_photos_answer_id_index ON answers_photos(answer_id);
+-- CREATE INDEX questions_product_id_index ON questions(product_id);
+-- CREATE INDEX questions_reported_index ON questions(reported);
+-- CREATE INDEX questions_helpful_index ON questions(helpful);
+-- CREATE INDEX answers_question_id_index ON answers(question_id);
+-- CREATE INDEX answers_reported_index ON answers(reported);
+-- CREATE INDEX answers_helpful_index ON answers(helpful);
+-- CREATE INDEX answers_photos_answer_id_index ON answers_photos(answer_id);
 
 -- LOAD IN CSV DATA
 

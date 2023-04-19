@@ -73,7 +73,7 @@ module.exports.getQuestions = async (req) => {
 };
 
 module.exports.postQuestion = async (req) => {
-  // console.log(answer_id);
+  // console.log(req.query.product_id);
   const queryString = req.query.product_id === undefined ?
   ``
   :
